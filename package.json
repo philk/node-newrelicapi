@@ -13,6 +13,9 @@
     "request": "~2.9.152",
     "xml2js": "~0.1.13"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "vows": "~0.6.2",
+    "nock": "~0.10.5"
+  },
   "optionalDependencies": {}
 }
