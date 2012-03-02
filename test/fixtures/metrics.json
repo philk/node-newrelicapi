@@ -1,0 +1,87 @@
+[
+   {
+      "fields" : [
+         "average_exclusive_time",
+         "average_response_time",
+         "average_value",
+         "call_count",
+         "calls_per_minute",
+         "max_response_time",
+         "min_response_time"
+      ],
+      "name" : "Agent/MetricsReported/count"
+   },
+   {
+      "fields" : [
+         "count",
+         "f",
+         "s",
+         "score",
+         "t",
+         "value"
+      ],
+      "name" : "Apdex"
+   },
+   {
+      "fields" : [
+         "percent"
+      ],
+      "name" : "CPU/User Time"
+   },
+   {
+      "fields" : [
+         "percent"
+      ],
+      "name" : "CPU/User/Utilization"
+   },
+   {
+      "fields" : [
+         "average_exclusive_time",
+         "average_response_time",
+         "average_value",
+         "call_count",
+         "calls_per_minute",
+         "max_response_time",
+         "min_response_time"
+      ],
+      "name" : "Database/all"
+   },
+   {
+      "fields" : [
+         "average_exclusive_time",
+         "average_response_time",
+         "average_value",
+         "call_count",
+         "calls_per_minute",
+         "max_response_time",
+         "min_response_time"
+      ],
+      "name" : "Database/allWeb"
+   },
+   {
+      "fields" : [
+         "average_call_time",
+         "average_response_time",
+         "call_count",
+         "max_call_time",
+         "min_call_time",
+         "requests_per_minute",
+         "throughput",
+         "total_call_time"
+      ],
+      "name" : "WebTransaction/Function/django.views.defaults:page_not_found"
+   },
+   {
+      "fields" : [
+         "average_call_time",
+         "average_response_time",
+         "call_count",
+         "max_call_time",
+         "min_call_time",
+         "requests_per_minute",
+         "throughput",
+         "total_call_time"
+      ],
+      "name" : "WebTransaction/Function/django.views.static:serve"
+   }
+]

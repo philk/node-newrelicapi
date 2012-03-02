@@ -1,0 +1,11 @@
+<threshold-values type="array">
+  <threshold_value formatted_metric_value="1.0 [0.5]*" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="1.0" name="Apdex"/>
+  <threshold_value formatted_metric_value="0.01%" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="0.01" name="Application Busy"/>
+  <threshold_value formatted_metric_value="0%" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="0.0" name="Error Rate"/>
+  <threshold_value formatted_metric_value="8 rpm" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="8.0" name="Throughput"/>
+  <threshold_value formatted_metric_value="0 epm" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="0.0" name="Errors"/>
+  <threshold_value formatted_metric_value="56 ms" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="56.0" name="Response Time"/>
+  <threshold_value formatted_metric_value="27.3%" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="27.3" name="DB"/>
+  <threshold_value formatted_metric_value="1.5%" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="1.5" name="CPU"/>
+  <threshold_value formatted_metric_value="2,215 MB" begin_time="2012-03-02 22:35:45" threshold_value="1" end_time="2012-03-02 22:38:45" metric_value="2215" name="Memory"/>
+</threshold-values>
