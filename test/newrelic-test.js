@@ -41,6 +41,19 @@ nock('https://api.newrelic.com')
   'cache-control': 'private, max-age=0, must-revalidate'
 });
 
+nock('https://api.newrelic.com')
+  .get(['/api/v1/accounts',
+       accountid_test,
+       'applications',
+       appid_test,
+       'data.json?begin=2012-03-02T08%3A00%3A00.000Z&end=2012-03-03T08%3A00%3A00.000Z&metrics=WebTransaction%2FFunction%2Fdjango.views.defaults%3Apage_not_found&field=requests_per_minute'].join("/"))
+  .reply(200, fs.readFileSync('./test/fixtures/data.json'), { server: 'NewRelic/0.8.53',
+  'content-type': 'application/json; charset=utf-8',
+  'x-runtime': '58',
+  'content-length': '4370',
+  'cache-control': 'private, max-age=0, must-revalidate'
+});
+
 vows.describe('New Relic Api').addBatch({
   'A NewRelicApi object': {
     topic: function(){
@@ -105,6 +118,25 @@ vows.describe('New Relic Api').addBatch({
       },
       "number of metrics is 8": function(err, metrics) {
         assert.equal(metrics.length, 8);
+      }
+    },
+    'when asked for a metric': {
+      topic: function(NewRelicApi) {
+        var options = {
+          begin: "2012-03-02T08:00:00.000Z",
+          end: "2012-03-03T08:00:00.000Z",
+          metrics: ['WebTransaction/Function/django.views.defaults:page_not_found'],
+          field: 'requests_per_minute',
+          appId: appid_test
+        };
+        NewRelicApi.getMetrics(options, this.callback);
+      },
+      "doesn't return an error but returns the metrics": function(err, metrics) {
+        assert.equal(err, null);
+        assert.equal(typeof(metrics), "object");
+      },
+      "number of metrics is 24": function(err, metrics) {
+        assert.equal(metrics.length, 24);
       }
     }
   }
