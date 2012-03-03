@@ -16,11 +16,50 @@ var newrelic = require('newrelicapi');
 newrelic.setAccountId(ACCOUNT_ID_HERE);
 newrelic.setApiKey(APIKEY_HERE)
 
+// Get a list of applications on the account
 newrelic.getApplications(function(err, apps){
   if (err) {
     console.log(err);
   }else{
     console.log(apps);
+  }
+});
+
+// Get a list of summary metrics for an application
+var appId = 'Application ID from getApplications';
+newrelic.getSummaryMetrics(appId, function(err, metrics){
+  if (err) {
+    console.log(err);
+  }else{
+    console.log(metrics);
+  }
+});
+
+// Get a list of available metrics for an application
+var appId = 'Application ID from getApplications';
+newrelic.getAppMetrics(appId, function(err, metrics){
+  if (err) {
+    console.log(err);
+  }else{
+    console.log(metrics);
+  }
+});
+
+// Specify a begin and end date range, list of metric names, a field, and an
+// application id.
+// Get back those metrics.
+var options = {
+  begin: yesterday.toISOString(),
+  end: today.toISOString(),
+  metrics: list_of_metric_names,
+  field: infield,
+  appId: appId
+};
+newrelic.getMetrics(options, function(err, metrics){
+  if (err) {
+    console.log(err);
+  }else{
+    console.log(metrics);
   }
 });
 ```
