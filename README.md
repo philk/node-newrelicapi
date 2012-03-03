@@ -2,16 +2,16 @@
 NewRelic API wrapper for nodejs
 ===============================
 
-[node-newrelic](https://github.com/philk/node-newrelic) is a simple API wrapper for the [NewRelic API](http://newrelic.github.com/newrelic_api/) written in nodejs.
+[node-newrelicapi](https://github.com/philk/node-newrelicapi) is a simple API wrapper for the [NewRelic API](http://newrelic.github.com/newrelic_api/) written in nodejs.
 
 ## Installation
 
-`npm install node-newrelic`
+`npm install node-newrelicapi`
 
 ## Usage
 
 ```javascript
-var newrelic = require('newrelic');
+var newrelic = require('newrelicapi');
 
 newrelic.setAccountId(ACCOUNT_ID_HERE);
 newrelic.setApiKey(APIKEY_HERE)

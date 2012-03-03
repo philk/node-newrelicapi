@@ -1,11 +1,21 @@
 {
   "author": "Phil Kates <me@philkates.com> (http://philkates.com)",
-  "name": "newrelic",
+  "name": "newrelicapi",
   "description": "Simple NewRelic API Wrapper",
   "version": "0.0.1",
+  "main": "./lib/newrelicapi",
   "repository": {
-    "url": ""
+    "type": "git",
+    "url": "git://github.com/philk/node-newrelicapi.git"
   },
+  "bugs": {
+    "url": "https://github.com/philk/node-newrelicapi/issues"
+  },
+  "licenses": [
+    { "type": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
   "engines": {
     "node": "~0.6.11"
   },

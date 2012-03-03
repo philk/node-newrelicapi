@@ -44,7 +44,7 @@ nock('https://api.newrelic.com')
 vows.describe('New Relic Api').addBatch({
   'A NewRelicApi object': {
     topic: function(){
-      var NewRelicApi = require('../lib/newrelic');
+      var NewRelicApi = require('../lib/newrelicapi');
       return NewRelicApi;
     },
     'when setting an API key': {
