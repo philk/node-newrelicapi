@@ -6,7 +6,7 @@ NewRelic API wrapper for nodejs
 
 ## Installation
 
-`npm install node-newrelicapi`
+`npm install newrelicapi`
 
 ## Usage
 
