@@ -82,7 +82,7 @@ vows.describe('New Relic Api').addBatch({
       },
       "doesn't return error and returns an applications list": function (err, apps) {
         assert.equal(err, null);
-        assert.notEqual(apps, null);
+        assert.equal(typeof(apps), "object");
         assert.equal(apps.length, 2);
       },
       "first application has id 123 and name 'My Application'": function (err, apps) {
@@ -96,7 +96,7 @@ vows.describe('New Relic Api').addBatch({
       },
       "doesn't return error and returns a list of threshold values": function(err, tvs) {
         assert.equal(err, null);
-        assert.notEqual(tvs, null);
+        assert.equal(typeof(tvs), "object");
       },
       "first threshold value has all attributes": function(err, tvs) {
         var ftv = tvs[0];
@@ -114,7 +114,7 @@ vows.describe('New Relic Api').addBatch({
       },
       "doesn't return error but returns a list of metrics": function(err, metrics) {
         assert.equal(err, null);
-        assert.notEqual(metrics, null);
+        assert.equal(typeof(metrics), "object");
       },
       "number of metrics is 8": function(err, metrics) {
         assert.equal(metrics.length, 8);
