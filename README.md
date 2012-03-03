@@ -27,11 +27,11 @@ newrelic.getApplications(function(err, apps){
 
 ## Tests
 
-Tests use the [vows](http://vowsjs.org/) project. To run them here:
+Tests use the [vows](http://vowsjs.org/) project. To run them:
 
 ```
-npm install -g vows
-vows --spec
+npm install --dev
+npm test
 ```
 
 ## Todo
