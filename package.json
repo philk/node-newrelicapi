@@ -2,7 +2,7 @@
   "author": "Phil Kates <me@philkates.com> (http://philkates.com)",
   "name": "newrelicapi",
   "description": "Simple NewRelic API Wrapper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./lib/newrelicapi",
   "repository": {
     "type": "git",
