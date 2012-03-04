@@ -1,6 +1,5 @@
 
-NewRelic API wrapper for nodejs
-===============================
+# NewRelic API wrapper for nodejs [![Build Status](https://secure.travis-ci.org/philk/node-newrelicapi.png)](http://travis-ci.org/philk/node-newrelicapi)
 
 [node-newrelicapi](https://github.com/philk/node-newrelicapi) is a simple API wrapper for the [NewRelic API](http://newrelic.github.com/newrelic_api/) written in nodejs.
 
