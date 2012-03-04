@@ -11,10 +11,13 @@ NewRelic API wrapper for nodejs
 ## Usage
 
 ```javascript
-var newrelic = require('newrelicapi');
+var NewRelicApi = require('newrelicapi');
 
-newrelic.setAccountId(ACCOUNT_ID_HERE);
-newrelic.setApiKey(APIKEY_HERE)
+var config = {
+  apikey: 'real_api_key_here',
+  accountId: 'real_accountId_here'
+}
+var newrelic = new NewRelicApi(config);
 
 // Get a list of applications on the account
 newrelic.getApplications(function(err, apps){
