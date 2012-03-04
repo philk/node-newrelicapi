@@ -4,13 +4,31 @@ var vows = require('vows'),
     nock = require('nock'),
     fs = require('fs');
 
+var NewRelicApi = require('../lib/newrelicapi');
+
 var apikey_test = 'OhT6aephei6neinaethooghu9eaXahSho';
 var accountid_test = '12345';
 var appid_test = '8375309';
 
 nock('https://rpm.newrelic.com')
+  .matchHeader('x-api-key', 'not_a_real_api_key')
   .get('/accounts/' + accountid_test + '/applications.xml')
+  .reply(403, " ", { server: 'NewRelic/0.8.53',
+  'content-type': 'application/xml; charset=utf-8',
+  status: '403'
+});
+
+nock('https://rpm.newrelic.com')
+  .get('/accounts/' + accountid_test + '/applications/999999/threshold_values.xml')
+  .reply(404, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<error>\n  <message>Couldn't find ClusterAgent with ID=999999 AND (`agents`.account_id = 77086)</message>\n</error>\n", { server: 'NewRelic/0.8.53',
+  'content-type': 'application/xml; charset=utf-8',
+  status: '404',
+  'content-length': '153'
+});
+
+nock('https://rpm.newrelic.com')
   .matchHeader('x-api-key', apikey_test)
+  .get('/accounts/' + accountid_test + '/applications.xml')
   .reply(200, fs.readFileSync('./test/fixtures/applications.xml'), { server: 'NewRelic/0.8.53',
   'content-type': 'application/xml; charset=utf-8',
   'x-runtime': '1243',
@@ -55,10 +73,50 @@ nock('https://api.newrelic.com')
 });
 
 vows.describe('New Relic Api').addBatch({
+  'A NewRelicApi object without an API key': {
+    topic: function(){
+      var nra = new NewRelicApi({apikey: null, accountId: accountid_test});
+      return nra;
+    },
+    "when created": {
+      "returns an error 'apikey is required'": function(err) {
+        assert.equal(err.name, "Error");
+        assert.equal(err.message, "apikey is required");
+      }
+    }
+  },
+  'A NewRelicApi object without an Account ID': {
+    topic: function(){
+      var nra = new NewRelicApi({apikey: apikey_test, accountId: null});
+      return nra;
+    },
+    "when created": {
+      "returns an error 'accountId is required'": function(err) {
+        assert.equal(err.name, "Error");
+        assert.equal(err.message, "accountId is required");
+      }
+    }
+  },
+  'A NewRelicApi object with an invalid API key': {
+    topic: function(){
+      var nra = new NewRelicApi({apikey: 'not_a_real_api_key', accountId: accountid_test});
+      return nra;
+    },
+    "when getApplications is called": {
+      topic: function(nra) {
+        nra.getApplications(this.callback);
+      },
+      "returns an error 403 'Invalid API key'": function(err, topic) {
+        assert.equal(err.name, "Error");
+        assert.equal(err.message, "Invalid API key");
+        assert.equal(err.statusCode, 403);
+      }
+    }
+  },
   'A NewRelicApi object': {
     topic: function(){
-      var NewRelicApi = require('../lib/newrelicapi');
-      return NewRelicApi;
+      var nra = new NewRelicApi({apikey: apikey_test, accountId: accountid_test});
+      return nra;
     },
     'when setting an API key': {
       topic: function (NewRelicApi) {
@@ -81,7 +139,7 @@ vows.describe('New Relic Api').addBatch({
         NewRelicApi.getApplications(this.callback);
       },
       "doesn't return error and returns an applications list": function (err, apps) {
-        assert.equal(err, null);
+        assert.ifError(err);
         assert.equal(typeof(apps), "object");
         assert.equal(apps.length, 2);
       },
@@ -95,7 +153,7 @@ vows.describe('New Relic Api').addBatch({
         NewRelicApi.getSummaryMetrics(appid_test, this.callback);
       },
       "doesn't return error and returns a list of threshold values": function(err, tvs) {
-        assert.equal(err, null);
+        assert.ifError(err);
         assert.equal(typeof(tvs), "object");
       },
       "first threshold value has all attributes": function(err, tvs) {
@@ -113,7 +171,7 @@ vows.describe('New Relic Api').addBatch({
         NewRelicApi.getAppMetrics(appid_test, this.callback);
       },
       "doesn't return error but returns a list of metrics": function(err, metrics) {
-        assert.equal(err, null);
+        assert.ifError(err);
         assert.equal(typeof(metrics), "object");
       },
       "number of metrics is 8": function(err, metrics) {
@@ -132,7 +190,7 @@ vows.describe('New Relic Api').addBatch({
         NewRelicApi.getMetrics(options, this.callback);
       },
       "doesn't return an error but returns the metrics": function(err, metrics) {
-        assert.equal(err, null);
+        assert.ifError(err);
         assert.equal(typeof(metrics), "object");
       },
       "number of metrics is 24": function(err, metrics) {
