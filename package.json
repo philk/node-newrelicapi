@@ -2,7 +2,7 @@
   "author": "Phil Kates <me@philkates.com> (http://philkates.com)",
   "name": "newrelicapi",
   "description": "Simple NewRelic API Wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "./lib/newrelicapi",
   "repository": {
     "type": "git",
@@ -12,23 +12,22 @@
     "url": "https://github.com/philk/node-newrelicapi/issues"
   },
   "licenses": [
-    { "type": "Apache 2.0",
+    {
+      "type": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
   ],
   "scripts": {
     "test": "node_modules/vows/bin/vows --spec"
   },
-  "engines": {
-    "node": "~0.6.11"
-  },
+  "engine": "node >= 0.6.11",
   "dependencies": {
-    "request": "~2.9.152",
-    "elementtree": "~0.1.1"
+    "request": "2.9.x",
+    "elementtree": "0.1.x"
   },
   "devDependencies": {
-    "vows": "~0.6.2",
-    "nock": "~0.10.5"
+    "nock": "0.13.x",
+    "vows": "0.6.x"
   },
   "optionalDependencies": {}
 }
